@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	
 	// TODO(Gusti): i don't know why this doesn't work, but someone please FIX it.
 	// --------------- start
-
+	
 	// Get the first argument
 	std::string argumentAsString = argv[1];
 	const char* argumentAsCharArray = argumentAsString.c_str();
@@ -46,11 +46,19 @@ int main(int argc, char *argv[])
 	//number = argv[1]; // No
 	//should use atoi?
 	// or std::stoi?
+	
 
 	std::cout << argumentAsString << std::endl; // i think this should be removed
-
+	for (int i = 0; argumentAsCharArray[i] != '\0'; i++) {
+		if (argumentAsCharArray[i] < '0' || argumentAsCharArray[i] > '9') {
+			std::cout << "It's NaN";
+			return 0;
+		}
+	 }
+	number = atoi(argumentAsCharArray);
+		
 	// --------------- stop
-
+	
 	printOddOrEven(number);
 
 	return 0;
