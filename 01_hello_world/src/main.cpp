@@ -7,7 +7,7 @@ void printMessageFor(const char* name)
 
 void printMessage()
 {
-	printMessageFor("Rujoi Razvan");
+	printMessageFor("Rujoi Razvan :-)");
 }
 
 int main()
