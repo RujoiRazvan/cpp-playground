@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include <ctype.h>
+#include <locale>
 
 void printOddOrEven(int number)
 {
@@ -34,6 +36,7 @@ int main(int argc, char *argv[])
 	if (argc <= 1)
 	{
 		printf("No program arguments found.\n");
+		return 0;
 	}
 	
 	// TODO(Gusti): i don't know why this doesn't work, but someone please FIX it.
@@ -49,14 +52,21 @@ int main(int argc, char *argv[])
 	
 
 	std::cout << argumentAsString << std::endl; // i think this should be removed
+	/*
 	for (int i = 0; argumentAsCharArray[i] != '\0'; i++) {
 		if (argumentAsCharArray[i] < '0' || argumentAsCharArray[i] > '9') {
-			std::cout << "It's NaN";
+			printf("It's NaN");
 			return 0;
 		}
 	 }
-	number = atoi(argumentAsCharArray);
-		
+	 */
+	std::locale loc;
+	if(isdigit(argumentAsCharArray[0], loc))
+		number = atoi(argumentAsCharArray);
+	else {
+		printf("It's a NaN");
+		return 0;
+	}
 	// --------------- stop
 	
 	printOddOrEven(number);
