@@ -1,9 +1,18 @@
 #include <iostream>
+#include <math.h>
+#include <locale>
+#include <ctype.h>
 
 bool isArmstrongNumber(int number)
 {
-	// TODO: implement some functionality to see if this number is an armstrong number
-
+	auto temp = 0;
+	int numberSaved = number;
+	while (number != 0) {
+		temp = temp + pow(number % 10, 3);
+		number /= 10;
+	}
+	if (temp == numberSaved)
+		return true;
 	return false;
 }
 
@@ -48,11 +57,18 @@ int main(int argc, char *argv[])
 	}
 
 	int readNumber = 0;
+	std::locale loc;
 	// Get the first argument
 	std::string argumentAsString = argv[1];
+	const char* argumentAsCharArray = argumentAsString.c_str();
 	
 	// TODO: read number / cast to integer
-
+	if (!isdigit(argumentAsCharArray[0], loc)){
+		printf("Undefined output");
+		return 0;
+	}
+	readNumber = atoi(argumentAsCharArray);
+	
 	printIsArmstrong(readNumber);
 	return 0;
 }
