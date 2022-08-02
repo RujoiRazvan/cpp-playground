@@ -3,12 +3,22 @@
 #include <locale>
 #include <ctype.h>
 
+int numberOfDigits(int number) {
+	int k = 0;
+	while (number != 0) {
+		k++;
+		number /= 10;
+	}
+	return k;
+}
+
 bool isArmstrongNumber(int number)
 {
 	auto temp = 0;
 	int numberSaved = number;
+	int digits = numberOfDigits(number);
 	while (number != 0) {
-		temp = temp + pow(number % 10, 3);
+		temp = temp + pow(number % 10, digits);
 		number /= 10;
 	}
 	if (temp == numberSaved)
