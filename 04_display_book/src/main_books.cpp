@@ -26,7 +26,7 @@ struct Author
 struct Book
 {
 	int id;
-	char title[50];
+	char title[MAX_TITLE_LEN + 1];
 
 	int numAuthors;
 	Author authors[5];
@@ -34,8 +34,10 @@ struct Book
 	void addAuthor(Author author)
 	{
 		// TODO: add an author to the container authors array.
-		authors[numAuthors] = author;
-		numAuthors++;
+		if (numAuthors < 5) {
+			authors[numAuthors] = author;
+			numAuthors++;
+		}
 	}
 
 	void print()
@@ -56,6 +58,7 @@ struct Book
 void setBookName(Book& book, std::string name)
 {
 	strncpy(book.title, name.c_str(), MAX_TITLE_LEN);
+	book.title[MAX_TITLE_LEN] = '\0';
 }
 
 int main()
@@ -73,15 +76,19 @@ int main()
 	author.setName("Gusti");
 	book1.addAuthor(author);
 
+	// Book 2
 	book2.id = 2;
 	book2.numAuthors = 0;
 	setBookName(book2, "Arhanghelul Raul");
 	author.setName("Ovidiu Eftimie");
 	book2.addAuthor(author);
 
+
+	// Book 3
 	book3.id = 3;
 	book3.numAuthors = 0;
 	setBookName(book3, "Factfulness");
+
 	author.setName("Hans Rosling");
 	book3.addAuthor(author);
 
@@ -90,6 +97,7 @@ int main()
 	
 	author.setName("Anna Rosling Ronnlund");
 	book3.addAuthor(author);
+
 
 	// Add new book
 	book4.id = 4;
